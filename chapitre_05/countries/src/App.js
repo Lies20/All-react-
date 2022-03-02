@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import Button from "./components/buttons";
 
 class App extends React.Component{
   constructor(){
@@ -24,11 +25,11 @@ class App extends React.Component{
         flag : resultat.data[0].flag,
         
       })
-      console.log(this.state.capital)
-      console.log(this.state.name)
-      console.log(this.state.population)
-      console.log(this.state.region)
-      console.log(this.state.flag)
+      // console.log(this.state.capital)
+      // console.log(this.state.name)
+      // console.log(this.state.population)
+      // console.log(this.state.region)
+      // console.log(this.state.flag)
     })
   }
   
@@ -37,11 +38,24 @@ class App extends React.Component{
 
 
 render(){
-  // {this.state.capital}{this.state.flag}{this.state.population}{this.state.region}{this.state.name}
+  
   return(
-    <h1>hello</h1>
+    <>
+    <h1>
+      {this.state.capital} 
+      {this.state.flag} 
+      {this.state.population}
+      {this.state.region} 
+      {this.state.name}
+     </h1>
+     <h2>
+       <Button>Brasil</Button>
+       <Button>Croatia</Button>
+       <Button>france</Button>
+     </h2>
+     </>
   )
-}
+  }
 }
 
 export default App;
