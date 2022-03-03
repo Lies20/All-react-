@@ -22,23 +22,29 @@ class App extends React.Component{
         name: resultat.data[0].name.common,
         population: resultat.data[0].population,
         region : resultat.data[0].region,
-        flag : resultat.data[0].flag,
+        flag : resultat.data[0].flag.svg,
         
       })
-      // console.log(this.state.capital)
-      // console.log(this.state.name)
-      // console.log(this.state.population)
-      // console.log(this.state.region)
-      // console.log(this.state.flag)
+    })
+  }
+  getCountry=(country)=>{
+    axios.get("https://restcountries.com/v3.1/name/"+ country).then((result)=>{
+      console.log("resultat:", result);
+      console.log("data:", result.data[0].capital[0]);
     })
   }
   
   
-
+  
+  // console.log(this.state.capital)
+  // console.log(this.state.name)
+  // console.log(this.state.population)
+  // console.log(this.state.region)
+  // console.log(this.state.flag)
 
 
 render(){
-  
+ this.getCountry("Algeria")
   return(
     <>
     <h1>
@@ -49,7 +55,7 @@ render(){
       {this.state.name}
      </h1>
      <h2>
-       <Button>Brasil</Button>
+       <Button onClick={this.getCountry}>Brasil</Button>
        <Button>Croatia</Button>
        <Button>france</Button>
      </h2>

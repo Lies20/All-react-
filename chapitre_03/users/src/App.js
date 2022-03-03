@@ -1,4 +1,5 @@
 import React from 'react';
+import { UserInfos } from './component/UserInfos';
 import user from "./users.json"
 
 
@@ -26,13 +27,12 @@ class App extends React.Component{
   render(){
     return(
       <div>
-        {this.state.users}
+        <UserInfos nom ={this.state.users}></UserInfos>
       </div>
     )
   }
 }
 export default App;
-
 
 
 
