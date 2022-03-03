@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import axios from "axios";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends React.Component{
+  constructor(){
+    super()
+    this.state={
+      pokemon :[],
+    }
+  }
+  componentDidMount=()=>{
+    axios.get("https://pokeapi.co/api/v2/pokemon").then((result)=>{
+      // console.log("resultat:" , result);
+      console.log("name Of pokemon is ", result.data.results);
+      this.setState({
+        pokemon :result.data.results,
+      })
+      console.log("la valeur de pokémon est", this.state.pokemon)
+    })
+  }
+  getPoke=(pokemon)=>{
+    axios.get("https://pokeapi.co/api/v2/pokemon"+ pokemon).then((result)=>{
+      console.log("resultat:", result);
+      console.log("data:", result);
+    })
+  }
+  
+  
+  render(){
+// this.getPoke("pikachu")
+console.log(this.state.pokemon);
+  return(
+    <div className="button">
+      <input placeholder="Enter a pokemon name.."/>
+      <button type="submit">Search</button>
+      <h1>{this.state.pokemon.map(pokemon=>{
+        return <p className="listOfPokemon">{pokemon.name}</p>
+      })}</h1>
+     </div>
+  )
+    
+  }
 }
 
 export default App;
