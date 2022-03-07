@@ -8,12 +8,25 @@ class App extends React.Component{
     super()
     this.state={
       pokemon :[],
+      pokePictures:[],
     }
   }
   componentDidMount=()=>{
     axios.get("https://pokeapi.co/api/v2/pokemon").then((result)=>{
       // console.log("resultat:" , result);
       console.log("name Of pokemon is ", result.data.results);
+      result.data.results.map(pokemon =>{
+        axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`).then(resultat=>{
+          // console.log("l'image est ",resultat.data.sprites.front_default)
+        var array = this.state.pokePictures
+        array.push(resultat.data.sprites.front_default)
+         this.setState({
+          pokePictures: array,
+         })
+          console.log("les images sont +", this.state.pokePictures);
+
+        })
+      })
       this.setState({
         pokemon :result.data.results,
       })
@@ -29,14 +42,18 @@ class App extends React.Component{
   
   
   render(){
+    console.log( this.state.pokePictures)
 // this.getPoke("pikachu")
 console.log(this.state.pokemon);
   return(
-    <div className="button">
+    <div className="">
       <input placeholder="Enter a pokemon name.."/>
       <button type="submit">Search</button>
-      <h1>{this.state.pokemon.map(pokemon=>{
-        return <p className="listOfPokemon">{pokemon.name}</p>
+      <h1>{this.state.pokemon.map((pokemon, index)=>{
+        return <div>
+                  <img src={this.state.pokePictures[index]}/>
+                  <p className="listOfPokemon">{pokemon.name}</p>
+              </div>
       })}</h1>
      </div>
   )
