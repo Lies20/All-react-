@@ -7,7 +7,7 @@ import Popular from './components/Popular';
 import PopularBattle from './components/Popular-battle';
 import WeeklyBattle from './components/Weekly-battle';
 import Weekly from './components/Weekly'
-
+import './App.css';
 
 class App extends React.Component{
 
@@ -20,11 +20,11 @@ class App extends React.Component{
       <header>
         <nav>
         <Link to="/">Home</Link>
-        {/* <Link></Link>
-        <Link></Link>
-        <Link></Link>
-        <Link></Link>
-        <Link></Link> */}
+        <Link to ="/Favorites">Favorites</Link>
+        <Link to ="/PopularBattle">PopularBattle</Link>
+        <Link to="/Popular"> Popular</Link>
+        <Link to="/WeeklyBattle"> WeeklyBattle</Link>
+        <Link to="/Weekly">Weekly</Link>
         </nav>
         <h1>Hello world</h1>
 
