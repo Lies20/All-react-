@@ -9,6 +9,7 @@ import WeeklyBattle from './components/Weekly-battle';
 import Weekly from './components/Weekly'
 import './App.css';
 
+
 class App extends React.Component{
 
 
